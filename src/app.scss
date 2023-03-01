@@ -1,0 +1,17 @@
+@import './scss/index';
+
+body {
+	// background: $background-color;
+}
+
+#svelte {
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	display: flex;
+	box-sizing: border-box;
+	flex: 1;
+	flex-direction: column;
+}

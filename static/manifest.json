@@ -1,0 +1,12 @@
+{
+  "name": "SvelteKit Template",
+  "short_name": "SvelteKit Template",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "lang": "en-US",
+  "background_color": "#fff",
+  "scope": "/",
+  "theme_color": "#fff",
+  "icons": [
+  ]
+}

@@ -1,0 +1,120 @@
+@import './mixins';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+* {
+	&::-webkit-scrollbar {
+		width: 16px;
+		height: 16px;
+
+		@include breakpoint(lg) {
+			width: 12px;
+			height: 12px;
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		border-radius: 100px;
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border: 4px solid transparent;
+		border-radius: 100px;
+		background-clip: content-box;
+		background-color: $scrollbar-color;
+		@include breakpoint(lg) {
+			border-width: 2px;
+		}
+	}
+}
+
+html,
+body,
+#svelte {
+	height: 100%;
+}
+
+html {
+	font-size: 14px;
+}
+
+a {
+	color: currentcolor;
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.container {
+	@include container_sizing;
+}
+
+label,
+button,
+input,
+select {
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+abbr[title],
+acronym[title],
+dfn {
+	cursor: help;
+}
+
+img {
+	font-style: italic;
+}
+
+textarea {
+	resize: vertical;
+}
+
+[disabled] {
+	cursor: not-allowed;
+}
+
+[aria-disabled='true'] {
+	cursor: default;
+	pointer-events: none;
+}
+
+.visually-hidden {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+.overflow-x {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.image-scale {
+	img,
+	svg,
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+}
