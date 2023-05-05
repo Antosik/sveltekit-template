@@ -1,28 +1,27 @@
 <script lang="ts">
-  import { icons } from 'feather-icons';
+	/* eslint-disable svelte/no-at-html-tags */
 
-  let className = '';
-  export { className as class };
+	import { icons } from 'feather-icons';
 
-  export let name: keyof typeof icons = 'star';
-  export let size = '100%';
-  export let strokeWidth = 2;
-  export let strokeLineCap: 'butt' | 'round' | 'square' = 'round';
-  export let strokeLineJoin: 'miter' | 'round' | 'bevel' = 'round';
+	let className = '';
+	export { className as class };
 
-  if (size !== '100%') {
-    size =
-      size.slice(-1) === 'x'
-        ? size.slice(0, size.length - 1) + 'em'
-        : parseInt(size) + 'px';
-  }
+	export let name: keyof typeof icons = 'star';
+	export let size = '100%';
+	export let strokeWidth = 2;
+	export let strokeLineCap: 'butt' | 'round' | 'square' = 'round';
+	export let strokeLineJoin: 'miter' | 'round' | 'bevel' = 'round';
+
+	if (size !== '100%') {
+		size = size.slice(-1) === 'x' ? size.slice(0, size.length - 1) + 'em' : parseInt(size) + 'px';
+	}
 </script>
 
 {@html icons[name].toSvg({
-  class: `feather feather-${name} ${className}`,
-  width: size,
-  height: size,
-  'stroke-width': strokeWidth,
-  'stroke-linecap': strokeLineCap,
-  'stroke-linejoin': strokeLineJoin,
+	class: `feather feather-${name} ${className}`,
+	width: size,
+	height: size,
+	'stroke-width': strokeWidth,
+	'stroke-linecap': strokeLineCap,
+	'stroke-linejoin': strokeLineJoin
 })}

@@ -5,11 +5,12 @@ module.exports = {
     project: './tsconfig.json',
     sourceType: 'module',
     ecmaVersion: 2019,
-		extraFileExtensions: ['.svelte'],
+    extraFileExtensions: ['.svelte'],
   },
-  plugins: ['svelte3', '@typescript-eslint/eslint-plugin'],
+  plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
     'plugin:@typescript-eslint/recommended',
+    'plugin:svelte/recommended',
     'plugin:prettier/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
@@ -20,11 +21,24 @@ module.exports = {
     node: true,
   },
   ignorePatterns: ['*.cjs', '.gitignore', 'svelte.config.js', 'vite.config.js'],
-  overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
+  overrides: [
+    {
+      files: ['*.svelte'],
+      parser: 'svelte-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
+    }
+  ],
   settings: {
-    'svelte3/typescript': true,
-    "svelte3/ignore-styles": ({ lang }) => !!lang,
-    "import/resolver": {
+    svelte: {
+      kit: {
+        files: {
+          routes: 'src/routes',
+        },
+      },
+    },
+    'import/resolver': {
       typescript: {}
     },
   },
