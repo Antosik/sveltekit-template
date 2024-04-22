@@ -4,78 +4,112 @@
 @import './variables';
 
 $breakpoints: (
-	xs: 375px,
-	sm: 576px,
-	md: 768px,
-	lg: 992px,
-	xl: 1200px,
-	xll: 1600px,
-	xxl: 1920px,
-	xxxl: 2560px
+  xs: 375px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xll: 1600px,
+  xxl: 1920px,
+  xxxl: 2560px,
 );
 
 @function math_div($a, $b) {
-	@return math.div($a, $b);
+  @return math.div($a, $b);
 }
 
 @function map_get($a, $b) {
-	@return map.get($a, $b);
+  @return map.get($a, $b);
 }
 
 @mixin breakpoint($point) {
-	@media (min-width: map.get($breakpoints, $point)) {
-		@content;
-	}
+  @media (min-width: map.get($breakpoints, $point)) {
+    @content;
+  }
 }
 
 @mixin container_sizing {
-	box-sizing: content-box;
-	padding-right: 20px;
-	padding-left: 20px;
-	margin-right: auto;
-	margin-left: auto;
+  box-sizing: content-box;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
+  margin-left: auto;
 
-	@include breakpoint(lg) {
-		max-width: 900px;
-		padding-right: 40px;
-		padding-left: 40px;
-	}
+  @include breakpoint(lg) {
+    max-width: 900px;
+    padding-right: 40px;
+    padding-left: 40px;
+  }
 
-	@include breakpoint(xl) {
-		max-width: 1100px;
-	}
+  @include breakpoint(xl) {
+    max-width: 1100px;
+  }
 
-	@include breakpoint(xxl) {
-		max-width: 1300px;
-	}
+  @include breakpoint(xxl) {
+    max-width: 1300px;
+  }
 }
 
 @function grid($multiplier) {
-	@return $grid-module * $multiplier;
+  @return $grid-module * $multiplier;
 }
 
 @mixin absolute_full {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+  position: absolute;
+  inset: 0;
 }
 
 @mixin flex_center {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin flex_vcenter {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 @mixin overflow_multiline($count) {
-	display: -webkit-box;
-	overflow: hidden;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: $count;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $count;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin optimize_animation {
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+@mixin multi_background_image($path) {
+  background-image: url('#{$path}.png');
+
+  .avif & {
+    background-image: url('#{$path}.avif');
+  }
+
+  .webp & {
+    background-image: url('#{$path}.webp');
+  }
+}
+
+@mixin transition($parameters...) {
+  $transition: ();
+  $willchange: ();
+
+  @each $parameter in $parameters {
+    $transition: list.append($transition, ($parameter 200ms ease-in-out), $separator: comma);
+    $willchange: list.append($willchange, $parameter, $separator: comma);
+  }
+
+  transition: $transition;
+  will-change: $willchange;
 }
