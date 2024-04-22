@@ -1,23 +1,23 @@
 <script lang="ts">
-	/* eslint-disable svelte/no-at-html-tags */
+  /* eslint-disable svelte/no-at-html-tags */
 
-	export let icon: string;
-	export let width: number | undefined = undefined;
-	export let height: number | undefined = undefined;
-	export let alt: string | undefined = undefined;
+  export let icon: string;
+  export let width: number | undefined = undefined;
+  export let height: number | undefined = undefined;
+  export let alt: string | undefined = undefined;
 </script>
 
 <figure title={alt} role="img" class="svg-icon" style:width="{width}px" style:height="{height}px">
-	{@html icon}
+  {@html icon}
 </figure>
 
 <style lang="scss">
-	figure {
-		@include flex_center;
-	}
+  figure {
+    @include flex_center;
+  }
 
-	:global(.svg-icon svg) {
-		width: 100%;
-		height: 100%;
-	}
+  :global(.svg-icon svg) {
+    width: 100%;
+    height: 100%;
+  }
 </style>

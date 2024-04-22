@@ -1,9 +1,9 @@
 <script lang="ts">
-	import media from '$lib/stores/media';
+  import media from '$lib/stores/media';
 
-	export let query: string;
+  export let query: string;
 
-	$: mq = media(query);
+  $: mq = media(query);
 </script>
 
 <slot matches={$mq} />
