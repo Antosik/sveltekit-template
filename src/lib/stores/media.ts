@@ -1,16 +1,15 @@
 import { readable } from 'svelte/store';
 
 function media(query: string) {
-  return readable<boolean | null>(null, (set) => {
-    if (typeof window === 'undefined') {
-      set(null);
-      return;
-    }
+  if (typeof window === 'undefined' || !query) {
+    return readable(null);
+  }
 
-    const listener = (ev: MediaQueryListEvent) => set(ev.matches);
-
+  return readable<boolean>(false, (set) => {
     const mql = window.matchMedia(query);
     set(mql.matches);
+
+    const listener = (ev: MediaQueryListEvent) => set(ev.matches);
     mql.addEventListener('change', listener);
 
     return () => mql.removeEventListener('change', listener);
