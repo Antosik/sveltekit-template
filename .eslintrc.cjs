@@ -1,10 +1,11 @@
+/** @type { import("eslint").Linter.Config } */
 module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		project: './tsconfig.json',
 		sourceType: 'module',
-		ecmaVersion: 2019,
+		ecmaVersion: 2020,
 		extraFileExtensions: ['.svelte'],
 	},
 	plugins: ['@typescript-eslint/eslint-plugin'],

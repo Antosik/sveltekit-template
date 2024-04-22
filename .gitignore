@@ -1,14 +1,14 @@
+# misc
 .DS_Store
+
+# node
 node_modules
+
+# output
 /build
+
+# framework-related
 /.svelte-kit
 /package
-.env
-.env.*
-!.env.example
-.vercel
-.output
-
-config
-logs
-cert_for_nic
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
